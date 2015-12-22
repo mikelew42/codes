@@ -1,0 +1,12 @@
+{
+	"default": ["build", "connect", "watch"],
+	"build": [
+		"clean:build",
+		"copy",
+		"useminPrepare",
+		"concat",
+		"uglify", /* cssmin, filerev */
+		"usemin",
+		"clean:tmp"
+	]
+}

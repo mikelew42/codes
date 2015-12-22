@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+<head>
+	<title>Base</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+
+	<script src="js/MPL.each.js"></script>
+	<script src="js/MPL.define.js"></script>
+	<script src="js/MPL.extend.js"></script>
+		<script src="js/MPL.event.js"></script>
+	<script src="js/MPL.assign.js"></script>
+	<script src="js/MPL.keys.js"></script>
+	<script src="js/MPL.redefine.js"></script>
+	<script src="js/MPL.clone.js"></script>
+	<script src="js/MPL.views.js"></script>
+
+	<script src="js/MPL.Base.js"></script>
+	
+	<script src="js/MPL.Fn.js"></script>
+	<script src="js/MPL.log.js"></script>
+	<script src="js/MPL.extend.tests.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		.clearfix:before,
+		  .clearfix:after {
+		    content: " ";
+		    display: table;
+		  }
+		  .clearfix:after {
+		    clear: both;
+		  }
+
+		.container {  margin: 0 auto; padding: 80px; background: #000;}
+
+		.item { overflow: hidden; font-family: Verdana; font-size: 14px; background: rgba(255,255,255,0.1); color: #eee; border-bottom: 1px solid rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 4px;}
+			.item > .col, .item > .preview > .col { padding: 5px 10px 6px; }
+			.item > .left, .item > .preview > .left { float: left; }
+			.item > .right, .item > .preview > .right { float: right; }
+			.item .icon-container { width: 40px; float: left; text-align: center; padding-top: 6px; }
+			.item.labeled-icon .icon-container { width: 50px;}
+			.item .icon-container .type { font-size: 9px; margin-bottom: 4px; margin-left: -35px; transform: rotate(-90deg); margin-top: -13px; }
+			.item .title-container { height: 26px; padding-top: 6px; float: left; }
+			.item .value-container { height: 26px; padding-top: 6px; padding-right: 10px; float: right; }
+			.item .content { padding: 0px 10px 5px;}
+			.item .fa { width: 20px; text-align: center; margin-right: 10px;  }
+			.item .item { font-size: 12px; padding: 3px 6px; margin-bottom: 0px; }
+			.item .title { margin-right: 7px; }
+			.item .subtitle { color: #bbb; }
+			.item .value { float: right; margin: 0; }
+			.item.expandable .preview { cursor: pointer;}
+			.item .view { padding: 8px 0px 4px 4px;}
+			.item .item .view { padding-top: 6px; }
+
+			/*.item.collapsed { border: 1px solid #333333;}
+			.item.collapsing { border: 1px solid #444444;}			
+			.item.expanded { border: 1px solid #666666;}
+			.item.expanding { border: 1px solid #555555;}*/
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item clearfix">
+			<div class="left col">
+				<i class="fa fa-plane"></i><span class="title">title</span><span class="subtitle">subtitle</span>
+			</div>
+			<div class="right col">Right</div>
+		</div>
+		<div class="item clearfix">
+			<div class="preview clearfix">
+				<div class="left col">
+					<i class="fa fa-plane"></i><span class="title">title</span><span class="subtitle">subtitle</span>
+				</div>
+				<div class="right col">Right</div>
+			</div>
+		</div>
+		<div class="item">Item</div>
+		<div class="item">
+			<i class="fa fa-plane"></i> Item
+		</div>
+		<div class="item">
+			<i class="fa fa-cubes"></i><span class="title">Item</span>
+		</div>
+		<div class="item">
+			<i class="fa fa-plane"></i><span class="title">Item</span><span class="subtitle">object</span>
+		</div>
+		<div class="item">
+			<i class="fa fa-plane"></i><span class="title">Item</span><span class="subtitle">object</span> <span class="value">321</span></div>
+		<div class="item">
+			<i class="fa fa-calculator"></i><span class="title">numberName</span><span class="subtitle">number</span> <span class="value">1234</span>
+		</div>
+		<div class="item clearfix labeled-icon">
+			<div class="value-container">
+				<span class="value">1234</span>
+			</div>
+			<div class="icon-container"><i class="fa fa-calculator"></i><div class="type">number</div></div>
+			<div class="title-container">
+				<span class="title">numberName</span><span class="subtitle">number</span>
+			</div>
+		</div>
+		<div class="item clearfix">
+			<div class="preview">
+				<div class="value-container">
+					<span class="value">1234</span>
+				</div>
+				<div class="icon-container"><i class="fa fa-calculator"></i></div>
+				<div class="title-container">
+					<span class="title">numberName</span><span class="subtitle">number</span>
+				</div>
+			</div>
+		</div>
+		<div class="item"><i class="fa fa-circle"></i><span class="title">trueName</span><span class="subtitle">trulean</span> <span class="value">true</span></div>
+		<div class="item"><i class="fa fa-circle-thin"></i><span class="title">falseName</span><span class="subtitle">foolean</span> <span class="value">false</span></div>
+		<div class="item"><i class="fa fa-quote-left"></i> stringName <span class="subtitle">string</span> <span class="value">How now brown cow</span></div>
+		<div class="item"><i class="fa fa-bolt"></i> functionName <span class="subtitle">function</span> <span class="value">function(){ ... }</span></div>
+		<div class="item"><i class="fa fa-cube"></i> objName <span class="subtitle">object (4)</span> <span class="value">{ one: 1, two: "two" }</span></div>
+		<div class="item"><i class="fa fa-bars"></i> arrayName <span class="subtitle">array (3)</span> <span class="value">[1, 2, 3]</span></div>
+		<div class="item"><i class="fa fa-folder-o"></i> Some container <span class="subtitle">folder</span> <span class="value">5 items</span></div>
+		<div class="item">
+			<div class="preview">
+				<i class="fa fa-folder-open-o"></i> Some container <span class="subtitle">folder</span> <span class="value">5 items</span>
+			</div>
+			<div class="view">
+				<div class="item"><i class="fa fa-circle"></i> trueName <span class="subtitle">boolean</span> <span class="value">true</span></div>
+				<div class="item"><i class="fa fa-circle-thin"></i> falseName <span class="subtitle">boolean</span> <span class="value">false</span></div>
+				<div class="item"><i class="fa fa-quote-left"></i> stringName <span class="subtitle">string</span> <span class="value">How now brown cow</span></div>
+				<div class="item">
+					<div class="preview">
+						<i class="fa fa-folder-open-o"></i> Some container <span class="subtitle">folder</span> <span class="value">5 items</span>
+					</div>
+					<div class="view">
+						<div class="item"><i class="fa fa-circle"></i> trueName <span class="subtitle">boolean</span> <span class="value">true</span></div>
+						<div class="item">
+							<div class="preview">
+								<i class="fa fa-folder-open-o"></i> Some container <span class="subtitle">folder</span> <span class="value">5 items</span>
+							</div>
+							<div class="view">
+								<div class="item"><i class="fa fa-circle"></i> trueName <span class="subtitle">boolean</span> <span class="value">true</span></div>
+								<div class="item"><i class="fa fa-circle-thin"></i> falseName <span class="subtitle">boolean</span> <span class="value">false</span></div>
+								<div class="item"><i class="fa fa-quote-left"></i> stringName <span class="subtitle">string</span> <span class="value">How now brown cow</span></div>
+								<div class="item"><i class="fa fa-bolt"></i> functionName <span class="subtitle">function</span> <span class="value">function(){ ... }</span></div>
+								<div class="item"><i class="fa fa-cube"></i> objName <span class="subtitle">object (4)</span> <span class="value">{ one: 1, two: "two" }</span></div>
+								<div class="item"><i class="fa fa-bars"></i> arrayName <span class="subtitle">array (3)</span> <span class="value">[1, 2, 3]</span></div>
+							</div>
+						</div>
+						<div class="item"><i class="fa fa-circle-thin"></i> falseName <span class="subtitle">boolean</span> <span class="value">false</span></div>
+						<div class="item"><i class="fa fa-quote-left"></i> stringName <span class="subtitle">string</span> <span class="value">How now brown cow</span></div>
+						<div class="item"><i class="fa fa-bolt"></i> functionName <span class="subtitle">function</span> <span class="value">function(){ ... }</span></div>
+						<div class="item"><i class="fa fa-cube"></i> objName <span class="subtitle">object (4)</span> <span class="value">{ one: 1, two: "two" }</span></div>
+						<div class="item"><i class="fa fa-bars"></i> arrayName <span class="subtitle">array (3)</span> <span class="value">[1, 2, 3]</span></div>
+					</div>
+				</div>
+				<div class="item"><i class="fa fa-bolt"></i> functionName <span class="subtitle">function</span> <span class="value">function(){ ... }</span></div>
+				<div class="item"><i class="fa fa-cube"></i> objName <span class="subtitle">object (4)</span> <span class="value">{ one: 1, two: "two" }</span></div>
+				<div class="item"><i class="fa fa-bars"></i> arrayName <span class="subtitle">array (3)</span> <span class="value">[1, 2, 3]</span></div>
+			</div>
+		</div>
+
+	</div>
+	Hello world.
+		<div class="item root light expandable">
+			<div class="preview">
+				<i class="fa fa-cubes"></i>
+				<span class="name">Root Object</span>
+				<i class="fa fa-gear fr btn"></i>
+				<span class="type fr">object</span>
+				
+			</div>
+			<div class="view">
+				<div class="properties">
+					<div class="property string">
+						<span class="name">propName</span>
+						<span class="type">string</span>
+						<span class="value">hello world</span>
+						<div class="border"></div>
+					</div>
+					<div class="property number">
+						<span class="name">anotherProp</span>
+						<span class="type">number</span>
+						<span class="value">123</span>
+						<div class="border"></div>
+					</div>
+					<div class="property boolean">
+						<span class="name">booleanProperty</span>
+						<span class="type">boolean</span>
+						<span class="value">true</span>
+						<div class="border"></div>
+					</div>
+					<div class="property string" style="display: none;">
+						<span class="name">reallyLongPropertyNameThatsTooBigForOneLine</span>
+						<span class="type">string</span>
+						<span class="value">hello world</span>
+						<div class="border"></div>
+					</div>
+					<div class="property string" style="display: none;">
+						<span class="name">longValue</span>
+						<span class="type">string</span>
+						<span class="value">This is the string value for this item, which is so long that it will have to break onto the second line</span>
+						<div class="border"></div>
+					</div>
+					<div class="item root light expandable">
+						<div class="preview">
+							<i class="fa fa-cubes"></i>
+							<span class="name">Root Object</span>
+							<i class="fa fa-gear fr btn"></i>
+							<span class="type fr">object</span>
+							
+						</div>
+						<div class="view">
+							<div class="properties">
+								<div class="property string">
+									<span class="name">propName</span>
+									<span class="type">string</span>
+									<span class="value">hello world</span>
+									<div class="border"></div>
+								</div>
+								<div class="property number">
+									<span class="name">anotherProp</span>
+									<span class="type">number</span>
+									<span class="value">123</span>
+									<div class="border"></div>
+								</div>
+								<div class="property boolean">
+									<span class="name">booleanProperty</span>
+									<span class="type">boolean</span>
+									<span class="value">true</span>
+									<div class="border"></div>
+								</div>
+								<div class="property string" style="display: none;">
+									<span class="name">reallyLongPropertyNameThatsTooBigForOneLine</span>
+									<span class="type">string</span>
+									<span class="value">hello world</span>
+									<div class="border"></div>
+								</div>
+								<div class="property string" style="display: none;">
+									<span class="name">longValue</span>
+									<span class="type">string</span>
+									<span class="value">This is the string value for this item, which is so long that it will have to break onto the second line</span>
+									<div class="border"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
